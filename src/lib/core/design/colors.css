@@ -1,0 +1,13 @@
+@theme {
+	--color-text-primary: #0f172a;
+	--color-text-secondary: #475569;
+	--color-text-tertiary: #94a3b8;
+
+	--color-control-primary: #ea580c;
+	--color-control-primary-hover: #c2410c;
+	--color-control-secondary: #1e293b;
+	--color-control-secondary-hover: #0f172a;
+
+	--color-outline: #e2e8f0;
+	--color-outline-strong: #cbd5e1;
+}

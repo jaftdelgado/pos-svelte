@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "$lib/core/design/colors.css";
+@import "$lib/core/design/typography.css";
+@import "$lib/core/design/dimensions.css";
+@import "$lib/core/design/text-sizes.css";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+	html,
+	body {
+		font-family: var(--font-family-sans);
+		font-size: var(--font-size-body);
+		@apply antialiased;
+	}
+
+	button,
+	input,
+	textarea,
+	select {
+		font-family: inherit;
+		font-size: inherit;
+	}
+
+	input,
+	textarea {
+		font-size: var(--font-size-body);
+		@apply antialiased;
+	}
+}
