@@ -1,35 +1,40 @@
 <script lang="ts">
 	import Button from '$lib/core/ui/Button.svelte';
-	import Input from '$lib/core/ui/Input.svelte'; // Línea generada
+	import DataTable from '$lib/core/components/data-table/DataTable.svelte';
+	import PageHeader from '$lib/core/components/PageHeader.svelte';
+
+	const products = [
+		{ id: 1, name: 'Coca Cola', category: 'Bebidas', price: 15.5, stock: 50 },
+		{ id: 2, name: 'Papas Fritas', category: 'Snacks', price: 12.0, stock: 20 },
+		{ id: 3, name: 'Leche Entera', category: 'Lácteos', price: 24.0, stock: 15 },
+		{ id: 4, name: 'Pan Blanco', category: 'Panadería', price: 35.0, stock: 10 },
+		{ id: 5, name: 'Jabón de Manos', category: 'Limpieza', price: 18.0, stock: 100 },
+		{ id: 6, name: 'Detergente', category: 'Limpieza', price: 45.0, stock: 5 }
+	];
+
+	const columns = [
+		{ accessorKey: 'name', header: 'Producto' },
+		{ accessorKey: 'category', header: 'Categoría' },
+		{
+			accessorKey: 'price',
+			header: 'Precio',
+			cell: (info: any) => `$${info.getValue().toFixed(2)}`
+		},
+		{ accessorKey: 'stock', header: 'Existencias' }
+	];
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center gap-8 p-4">
-	<div class="text-center">
-		<h1 class="text-3xl font-bold">POS System</h1>
-		<p class="text-gray-600">Componentes core con tokens de diseño</p>
-	</div>
+<div class="mx-auto w-full max-w-6xl p-6">
+	<PageHeader 
+		title="Inventario de Productos" 
+		subtitle="Listado general de existencias y precios por categoría">
+		{#snippet actions()}
+			<Button variant="outline">Exportar</Button>
+			<Button variant="default">Nuevo Producto</Button>
+		{/snippet}
+	</PageHeader>
 
-	<div class="flex flex-wrap items-center gap-4 border-t pt-6">
-		<Button variant="default" size="lg">Nueva Venta</Button>
-		<Button variant="secondary">Inventario</Button>
-		<Button variant="outline" size="sm">Configuración</Button>
-		<Button variant="ghost" class="text-red-500 hover:text-red-700">Cerrar Sesión</Button>
-	</div>
-
-	<div class="flex w-full max-w-2xl flex-col gap-4 border-t pt-6">
-		<div class="flex items-center gap-4">
-			<Input size="lg" placeholder="Buscador grande (lg)..." class="flex-1" />
-			<Button size="lg">Buscar</Button>
-		</div>
-
-		<div class="flex items-center gap-4">
-			<Input size="md" placeholder="Input estándar (md)..." class="flex-1" />
-			<Button variant="secondary" size="md">Escanear</Button>
-		</div>
-
-		<div class="flex items-center gap-4">
-			<Input size="sm" placeholder="Input pequeño (sm)..." class="flex-1" />
-			<Button variant="outline" size="sm">Aplicar</Button>
-		</div>
+	<div class="mt-8">
+		<DataTable data={products} {columns} />
 	</div>
 </div>
